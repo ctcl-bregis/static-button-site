@@ -161,4 +161,4 @@ cython_debug/
 
 # User configuration
 config.yaml
-
+*.html
