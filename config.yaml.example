@@ -1,0 +1,20 @@
+sbshtmlcomment: True
+title: "Your text here"
+footertext: "Your text here"
+buttons:
+  button1:
+     fgcolor: "#000000"
+     bgcolor: "#FF0000"
+     text: "Button 1"
+     link: "#"
+  button2:
+     fgcolor: "#000000"
+     bgcolor: "#00FF00"
+     text: "Button 2"
+     link: "#"
+  button3:
+     fgcolor: "#000000"
+     bgcolor: "#0000FF"
+     text: "Button 3"
+     link: "#"
+

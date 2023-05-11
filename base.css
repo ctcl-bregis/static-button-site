@@ -1,0 +1,26 @@
+body {
+    background-color: #000000;
+    color: #FFFFFF;
+    font-family: "arial";
+}
+
+div {
+    display: block;
+}
+
+.center {
+    text-align: center;
+}
+
+.btn-group-rlmenu a {
+    text-decoration: none;
+}
+
+.btn-group-rlmenu button {
+    border: 1px solid #000000;
+    margin: 1px;
+    padding: 10px 24px;
+    cursor: pointer;
+    width: 100%;
+    display: block;
+}
