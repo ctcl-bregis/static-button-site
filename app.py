@@ -1,3 +1,6 @@
+# Static Button Site - CTCL 2023
+# May 11, 2023
+
 import yaml
 
 with open("config.yaml") as f:
