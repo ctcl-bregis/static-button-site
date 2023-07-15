@@ -1,15 +1,26 @@
 # Static Button Site - CTCL 2023
-# May 11, 2023
+# May 11, 2023 - July 15, 2023
 
-import yaml
+__version__ = "0.2.0"
+
+from csscompressor import compress
+from yaml import load, dump
+from datetime import datetime, timezone
+try:
+    from yaml import CLoader as Loader, CDumper as Dumper
+except ImportError:
+    from yaml import Loader, Dumper
 
 with open("config.yaml") as f:
-    configdata = yaml.load(f.read())
+    # "Loader" is safe here as the data comes from a config file
+    configdata = load(f.read(), Loader = Loader)
+
+fmtdate = datetime.now(timezone.utc).strftime(configdata["strftime"])
 
 args = {}
 
 if configdata["sbshtmlcomment"]:
-    args["sbscomment"] = "<!-- Generated with Static Button Site by CTCL 2023 -->"
+    args["sbscomment"] = f"<!-- Generated with Static Button Site {__version__} - {fmtdate} -->"
 else:
     args["sbscomment"] = ""
 
@@ -17,7 +28,7 @@ args["title"] = configdata["title"]
 args["footertext"] = configdata["footertext"]
     
 with open("base.css") as f:
-    args["styling"] = f.read()
+    args["styling"] = compress(f.read())
     
 buttons = ""
 for i in configdata["buttons"]:
@@ -29,7 +40,6 @@ for i in configdata["buttons"]:
     buttons += f"       <a href=\"{plink}\"><button style=\"background-color: {pbtbg}; color: {pbtfg}\">{ptext}</button></a>\n"
 args["buttons"] = buttons    
 
-        
 document = """<!DOCTYPE html>
 <html>
     <head lang="en">
@@ -50,7 +60,7 @@ document = """<!DOCTYPE html>
     <div class="btn-group-rlmenu">
 {buttons}</div>
     <br>
-    <h4 class="center">{footertext}
+    <h4 class="center">{footertext}</h4>
 </html>
 """.format(**args)
 
